@@ -1,6 +1,10 @@
 # Валидатор данных (Java)
 
 [![hexlet-check](https://github.com/AlenaMende/java-project-78/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/AlenaMende/java-project-78/actions)
+[![Java CI](https://github.com/AlenaMende/java-project-78/actions/workflows/main.yml/badge.svg)](https://github.com/AlenaMende/java-project-78/actions/workflows/main.yml)
+[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=AlenaMende_java-project-78&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AlenaMende_java-project-78)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=AlenaMende_java-project-78&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=AlenaMende_java-project-78)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=AlenaMende_java-project-78&metric=coverage)](https://sonarcloud.io/summary/new_code?id=AlenaMende_java-project-78)
 
 Создание собственной библиотеки для проверки корректности (валидации) данных – отличный способ прокачать навыки проектирования кода, в особенности, объектно-ориентированной архитектуры. Создание правильных иерархий классов, расширяемая архитектура, применение принципов SOLID, использование fluent-интерфейса – все это предстоит делать в проекте
 
