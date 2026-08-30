@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("checkstyle")
     id("jacoco")
+    id("org.sonarqube") version "7.3.1.8318"
 }
 
 group = "hexlet.code"
@@ -36,5 +37,12 @@ tasks.jacocoTestReport {
     reports {
         xml.required.set(true)
         html.required.set(true)
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "AlenaMende_java-project-78")
+        property("sonar.organization", "alenamende")
     }
 }
