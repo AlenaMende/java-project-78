@@ -5,6 +5,7 @@ public class NumberSchema extends BaseSchema<Integer> {
     private Integer min = null;
     private Integer max = null;
 
+    @Override
     public NumberSchema required() {
         super.required();
         return this;
