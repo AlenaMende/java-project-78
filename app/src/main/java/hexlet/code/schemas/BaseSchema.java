@@ -12,6 +12,11 @@ public abstract class BaseSchema<T> {
         checks.put(name, validate);
     }
 
+    public BaseSchema<T> required() {
+        this.required = true;
+        return this;
+    }
+
     protected boolean isEmpty(T value) {
         return false;
     }
