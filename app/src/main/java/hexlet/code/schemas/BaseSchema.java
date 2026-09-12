@@ -1,16 +1,31 @@
 package hexlet.code.schemas;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
+
 public abstract class BaseSchema<T> {
-    private boolean required = false;
+    protected Map<String, Predicate<T>> checks = new HashMap<>();
+    protected boolean required = false;
 
-    public BaseSchema<T> required() {
-        this.required = true;
-        return this;
+    protected final void addCheck(String name, Predicate<T> validate) {
+        checks.put(name, validate);
     }
 
-    protected boolean isRequired() {
-        return required;
+    protected boolean isEmpty(T value) {
+        return false;
     }
 
-    public abstract boolean isValid(T value);
+    public final boolean isValid(T value) {
+        if (value == null) {
+            return !required;
+        }
+
+        if (isEmpty(value)) {
+            return !required;
+        }
+
+        return checks.values().stream()
+                .allMatch(check -> check.test(value));
+    }
 }
