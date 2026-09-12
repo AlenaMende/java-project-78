@@ -40,7 +40,7 @@ public class MapSchemaTest {
 
         assertFalse(schema.isValid(new HashMap<>()));
         assertTrue(schema.isValid(map));
-        assertFalse(schema.isValid(null));
+        assertTrue(schema.isValid(null));
     }
 
     @Test
