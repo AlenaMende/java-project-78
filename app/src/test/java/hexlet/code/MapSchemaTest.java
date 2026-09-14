@@ -59,12 +59,13 @@ public class MapSchemaTest {
         assertFalse(schema.isValid(map1));
         assertFalse(schema.isValid(map2));
     }
+
     @Test
     void testMapSchemaShape() {
         Validator v = new Validator();
         var schema = v.map();
 
-        Map<String, BaseSchema<?>> schemas = new HashMap<>();
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
 
         schemas.put("firstName", v.string().required());
         schemas.put("lastName", v.string().required().minLength(2));
@@ -91,28 +92,36 @@ public class MapSchemaTest {
     }
 
     @Test
-    void testMapSchemaShapeWithNumber() {
+    void testMapSchemaShapeWithAdditionalConstraints() {
         Validator v = new Validator();
-
         var schema = v.map();
 
-        Map<String, BaseSchema<?>> schemas = new HashMap<>();
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
 
-        schemas.put("name", v.string().required());
-        schemas.put("age", v.number().required().positive());
+        schemas.put("name", v.string()
+                .required()
+                .minLength(3)
+                .contains("ar"));
 
         schema.shape(schemas);
 
         Map<String, Object> valid = new HashMap<>();
-        valid.put("name", "John");
-        valid.put("age", 25);
+        valid.put("name", "Mark");
 
         assertTrue(schema.isValid(valid));
 
-        Map<String, Object> invalid = new HashMap<>();
-        invalid.put("name", "John");
-        invalid.put("age", -5);
+        Map<String, Object> valid2 = new HashMap<>();
+        valid2.put("name", "Ma");
 
-        assertFalse(schema.isValid(invalid));
+        assertFalse(schema.isValid(valid2));
+
+        Map<String, Object> valid3 = new HashMap<>();
+        valid3.put("name", "Anna");
+
+        assertFalse(schema.isValid(valid3));
+
+        Map<String, Object> valid4 = new HashMap<>();
+
+        assertFalse(schema.isValid(valid4));
     }
 }
