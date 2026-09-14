@@ -17,16 +17,8 @@ public abstract class BaseSchema<T> {
         return this;
     }
 
-    protected boolean isEmpty(T value) {
-        return false;
-    }
-
     public final boolean isValid(T value) {
         if (value == null) {
-            return !required;
-        }
-
-        if (isEmpty(value)) {
             return !required;
         }
 
