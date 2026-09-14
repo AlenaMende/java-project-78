@@ -15,27 +15,19 @@ public class MapSchema extends BaseSchema<Map<String, ?>> {
         return this;
     }
 
-    public MapSchema shape(Map<String, ? extends BaseSchema<?>> schemas) {
+    public <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
         addCheck("shape", map -> {
-            for (Map.Entry<String, ? extends BaseSchema<?>> entry : schemas.entrySet()) {
+            for (Map.Entry<String, BaseSchema<T>> entry : schemas.entrySet()) {
                 String key = entry.getKey();
-                BaseSchema<?> schema = entry.getValue();
-                Object value = map.get(key);
+                BaseSchema<T> schema = entry.getValue();
+                T value = (T) map.get(key);
 
-                if (!isValidSchema(schema, value)) {
+                if (!schema.isValid(value)) {
                     return false;
                 }
             }
             return true;
         });
         return this;
-    }
-
-    private <T> boolean isValidSchema(BaseSchema<T> schema, Object value) {
-        try {
-            return schema.isValid((T) value);
-        } catch (ClassCastException e) {
-            return false;
-        }
     }
 }
