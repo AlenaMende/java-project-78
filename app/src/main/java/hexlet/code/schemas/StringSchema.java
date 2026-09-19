@@ -2,9 +2,12 @@ package hexlet.code.schemas;
 
 public class StringSchema extends BaseSchema<String> {
 
-    @Override
+    public StringSchema() {
+        addCheck("required", value -> value != null && !value.isEmpty());
+    }
+
     public StringSchema required() {
-        this.required = true;
+        required = true;
         return this;
     }
 
