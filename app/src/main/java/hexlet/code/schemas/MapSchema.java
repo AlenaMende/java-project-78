@@ -4,9 +4,12 @@ import java.util.Map;
 
 public class MapSchema extends BaseSchema<Map<String, ?>> {
 
-    @Override
+    public MapSchema() {
+        addCheck("required", value -> value != null);
+    }
+
     public MapSchema required() {
-        this.required = true;
+        required = true;
         return this;
     }
 
