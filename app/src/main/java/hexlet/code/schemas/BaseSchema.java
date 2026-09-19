@@ -12,16 +12,10 @@ public abstract class BaseSchema<T> {
         checks.put(name, validate);
     }
 
-    public BaseSchema<T> required() {
-        this.required = true;
-        return this;
-    }
-
     public final boolean isValid(T value) {
         if (value == null || value.equals("")) {
             return !required;
         }
-
         return checks.values().stream()
                 .allMatch(check -> check.test(value));
     }
